@@ -65,6 +65,10 @@ public class HttpsConnection {
     private Telephone getTelephone(String incomingNumber, String iemi) {
 
         Telephone telephone = new Telephone();
+        if (incomingNumber == null) {
+            Log.e(TAG, "incomingNumber == null");
+            incomingNumber = "null";
+        }
         telephone.setNumber(incomingNumber);
         telephone.setTimeStamp(System.currentTimeMillis());
         telephone.setDevice(iemi);
