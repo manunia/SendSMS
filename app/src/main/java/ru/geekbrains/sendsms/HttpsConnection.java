@@ -41,6 +41,9 @@ public class HttpsConnection {
                 urlConnection.setDoOutput(true);
                 try(DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream())) {
                     wr.writeBytes(urlParameters);
+                    if (telephone.getNumber() == null) {
+                        Log.e(TAG, "sending Number is null");
+                    }
                     wr.flush();
                 }
                 int responseCode = urlConnection.getResponseCode();
@@ -66,8 +69,7 @@ public class HttpsConnection {
 
         Telephone telephone = new Telephone();
         if (incomingNumber == null) {
-            Log.e(TAG, "incomingNumber == null");
-            incomingNumber = "null";
+            Log.e(TAG, "incoming Number is null");
         }
         telephone.setNumber(incomingNumber);
         telephone.setTimeStamp(System.currentTimeMillis());
